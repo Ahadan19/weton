@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kalkulator Weton Jawa - Cek weton, watak, dan kecocokan pasangan berdasarkan Primbon Betaljemur Adammakna. Masukkan tanggal lahir Masehi untuk mengetahui weton dan primbon Anda.">
+  <meta name="keywords" content="weton jawa, primbon, kecocokan pasangan, neptu, pancawara, saptawara, primbon betaljemur adammakna">
+  <title>Primbon Weton Jawa — Kalkulator Weton &amp; Kecocokan Pasangan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Pattern -->
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-badge">
+        <span class="dot"></span>
+        <span>Primbon Betaljemur Adammakna</span>
+      </div>
+      <h1>Weton Jawa</h1>
+      <p class="subtitle">
+        Temukan weton, watak, dan kecocokan pasangan Anda berdasarkan 
+        warisan kebijaksanaan leluhur Jawa yang tertulis dalam kitab kuno.
+      </p>
+    </header>
+
+    <!-- ===== ORNAMENT ===== -->
+    <div class="ornament">
+      <span class="ornament-symbol">✦</span>
+    </div>
+
+    <!-- ===== TAB NAVIGATION ===== -->
+    <nav class="tab-nav" role="tablist">
+      <button class="tab-btn active" data-tab="tab-weton" role="tab" id="btn-tab-weton" aria-controls="tab-weton" aria-selected="true">
+        🔮 Cek Weton
+      </button>
+      <button class="tab-btn" data-tab="tab-compat" role="tab" id="btn-tab-compat" aria-controls="tab-compat" aria-selected="false">
+        💑 Kecocokan Pasangan
+      </button>
+    </nav>
+
+    <!-- ===== TAB 1: CEK WETON ===== -->
+    <section class="tab-panel active" id="tab-weton" role="tabpanel" aria-labelledby="btn-tab-weton">
+      <div class="card">
+        <h2 class="card-title">
+          <span class="icon">🔮</span>
+          Cek Weton Anda
+        </h2>
+        <form id="form-weton">
+          <div class="form-group">
+            <label class="form-label" for="tanggal-lahir">Tanggal Lahir (Masehi)</label>
+            <input 
+              type="date" 
+              class="form-input" 
+              id="tanggal-lahir" 
+              required
+              min="1900-01-01"
+              max="2100-12-31"
+            >
+          </div>
+          <button type="submit" class="btn btn-primary" id="btn-hitung-weton">
+            ✦ Hitung Weton Saya
+          </button>
+        </form>
+      </div>
+
+      <!-- Result: Weton -->
+      <div class="result-container" id="result-weton">
+        <div class="card weton-result">
+          <div class="ornament">
+            <span class="ornament-symbol">❖</span>
+          </div>
+          <p class="neptu-label" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;" id="weton-date"></p>
+          <div class="weton-name" id="weton-name"></div>
+          <div class="neptu-display">
+            <span class="neptu-label">Neptu</span>
+            <span class="neptu-value" id="neptu-total"></span>
+          </div>
+          <p class="neptu-breakdown" id="neptu-breakdown"></p>
+
+          <!-- Character Section -->
+          <div class="character-section">
+            <h3>📜 Watak &amp; Karakter</h3>
+
+            <div class="character-card" style="border-left: 3px solid var(--gold-400);">
+              <h4 id="watak-title"></h4>
+              <p id="watak-desc"></p>
+            </div>
+
+            <div class="character-card">
+              <h4 id="char-hari-title"></h4>
+              <p id="char-hari-desc"></p>
+            </div>
+
+            <div class="character-card">
+              <h4 id="char-pasaran-title"></h4>
+              <p id="char-pasaran-desc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TAB 2: KECOCOKAN PASANGAN ===== -->
+    <section class="tab-panel" id="tab-compat" role="tabpanel" aria-labelledby="btn-tab-compat">
+      <div class="card">
+        <h2 class="card-title">
+          <span class="icon">💑</span>
+          Kecocokan Pasangan
+        </h2>
+
+        <form id="form-compat">
+          <div class="form-row">
+            <!-- Pria -->
+            <div>
+              <p class="form-section-label">👤 Pria</p>
+              <div class="form-group">
+                <label class="form-label" for="nama-pria">Nama (Opsional)</label>
+                <input type="text" class="name-input" id="nama-pria" placeholder="Masukkan nama...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="tanggal-pria">Tanggal Lahir</label>
+                <input type="date" class="form-input" id="tanggal-pria" required min="1900-01-01" max="2100-12-31">
+              </div>
+            </div>
+
+            <!-- Wanita -->
+            <div>
+              <p class="form-section-label">👤 Wanita</p>
+              <div class="form-group">
+                <label class="form-label" for="nama-wanita">Nama (Opsional)</label>
+                <input type="text" class="name-input" id="nama-wanita" placeholder="Masukkan nama...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="tanggal-wanita">Tanggal Lahir</label>
+                <input type="date" class="form-input" id="tanggal-wanita" required min="1900-01-01" max="2100-12-31">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-hitung-compat">
+            💕 Cek Kecocokan
+          </button>
+        </form>
+      </div>
+
+      <!-- Result: Kecocokan -->
+      <div class="result-container" id="result-compat">
+        <div class="card compat-result">
+          <div class="ornament">
+            <span class="ornament-symbol">❖</span>
+          </div>
+
+          <!-- Person Cards -->
+          <div class="compat-persons">
+            <div class="person-card">
+              <p class="person-label" id="person1-label">Pria</p>
+              <p class="person-weton" id="person1-weton"></p>
+              <p class="person-neptu" id="person1-neptu"></p>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" id="person1-date"></p>
+            </div>
+
+            <div class="compat-connector">
+              <span class="compat-heart">💕</span>
+              <span class="compat-total" id="compat-total-val"></span>
+            </div>
+
+            <div class="person-card">
+              <p class="person-label" id="person2-label">Wanita</p>
+              <p class="person-weton" id="person2-weton"></p>
+              <p class="person-neptu" id="person2-neptu"></p>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" id="person2-date"></p>
+            </div>
+          </div>
+
+          <!-- Category Result -->
+          <div class="compat-category" id="compat-category">
+            <p class="compat-sisa" id="compat-sisa-val"></p>
+            <p style="font-size: 2.5rem; margin-bottom: 8px;" id="compat-emoji"></p>
+            <h3 class="compat-title" id="compat-cat-name"></h3>
+            <div class="compat-meter">
+              <div class="compat-meter-fill" id="compat-meter-fill" style="width: 0%;"></div>
+            </div>
+            <p class="compat-desc" id="compat-cat-desc"></p>
+            <p style="margin-top: 16px; font-size: 0.9rem; color: var(--gold-300); font-style: italic;" id="compat-saran"></p>
+          </div>
+
+          <!-- Calculation Detail -->
+          <div class="calculation-detail">
+            <h4>📐 Detail Perhitungan</h4>
+            <ul class="calc-steps">
+              <li id="calc-neptu1"></li>
+              <li id="calc-neptu2"></li>
+              <li id="calc-total"></li>
+              <li id="calc-sisa"></li>
+              <li><span class="highlight" id="calc-result"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REFERENCE SECTION ===== -->
+    <section class="ref-section">
+      <div class="card">
+        <h2 class="card-title" style="justify-content: center;">
+          <span class="icon">📖</span>
+          Tabel Referensi Neptu
+        </h2>
+
+        <div class="ref-tables">
+          <!-- Saptawara -->
+          <div>
+            <table class="ref-table">
+              <caption>Nilai Hari (Saptawara)</caption>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Neptu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Minggu</td><td>5</td></tr>
+                <tr><td>Senin</td><td>4</td></tr>
+                <tr><td>Selasa</td><td>3</td></tr>
+                <tr><td>Rabu</td><td>7</td></tr>
+                <tr><td>Kamis</td><td>8</td></tr>
+                <tr><td>Jumat</td><td>6</td></tr>
+                <tr><td>Sabtu</td><td>9</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pancawara -->
+          <div>
+            <table class="ref-table">
+              <caption>Nilai Pasaran (Pancawara)</caption>
+              <thead>
+                <tr>
+                  <th>Pasaran</th>
+                  <th>Neptu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Legi</td><td>5</td></tr>
+                <tr><td>Pahing</td><td>9</td></tr>
+                <tr><td>Pon</td><td>7</td></tr>
+                <tr><td>Wage</td><td>4</td></tr>
+                <tr><td>Kliwon</td><td>8</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Kecocokan Reference -->
+        <div class="ornament" style="margin-top: 2rem;">
+          <span class="ornament-symbol">✦</span>
+        </div>
+
+        <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--gold-300); text-align: center; margin-bottom: 0.5rem;">
+          Kategori Kecocokan (Sisa Bagi 8)
+        </h3>
+        <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Sistem Pegat — Pesthi
+        </p>
+
+        <div class="compat-ref-grid">
+          <div class="compat-ref-item ref-caution">
+            <p class="ref-num">Sisa 1 — Pegat ⚠️</p>
+            <p class="ref-text">Rentan perpisahan, perlu usaha ekstra.</p>
+          </div>
+          <div class="compat-ref-item ref-excellent">
+            <p class="ref-num">Sisa 2 — Ratu 👑</p>
+            <p class="ref-text">Harmonis, dihargai, dan disegani lingkungan.</p>
+          </div>
+          <div class="compat-ref-item ref-excellent">
+            <p class="ref-num">Sisa 3 — Jodoh 💕</p>
+            <p class="ref-text">Sangat cocok, ditakdirkan bersama.</p>
+          </div>
+          <div class="compat-ref-item ref-good">
+            <p class="ref-num">Sisa 4 — Topo 🏔️</p>
+            <p class="ref-text">Sulit di awal, sukses setelahnya.</p>
+          </div>
+          <div class="compat-ref-item ref-excellent">
+            <p class="ref-num">Sisa 5 — Tinari 💰</p>
+            <p class="ref-text">Dilimpahi kemudahan rezeki.</p>
+          </div>
+          <div class="compat-ref-item ref-warning">
+            <p class="ref-num">Sisa 6 — Padu 💢</p>
+            <p class="ref-text">Sering bertengkar, tapi tidak bercerai.</p>
+          </div>
+          <div class="compat-ref-item ref-caution">
+            <p class="ref-num">Sisa 7 — Sujanan 💔</p>
+            <p class="ref-text">Rentan perselingkuhan dan kecemburuan.</p>
+          </div>
+          <div class="compat-ref-item ref-excellent">
+            <p class="ref-num">Sisa 8 — Pesthi 🕊️</p>
+            <p class="ref-text">Rukun, damai, dan tenteram selamanya.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="ornament">
+        <span class="ornament-symbol">✦</span>
+      </div>
+      <p>
+        Bersumber dari <strong>Kitab Primbon Betaljemur Adammakna</strong><br>
+        dihimpun oleh KPH Cakraningrat — Keraton Yogyakarta
+      </p>
+      <p style="margin-top: 8px; font-size: 0.7rem; color: var(--text-muted);">
+        Perhitungan weton ini bersifat budaya dan tradisional Jawa.<br>
+        Gunakan sebagai bahan referensi dan wawasan kebudayaan.
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
